@@ -6,6 +6,9 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+// Spécifie que tous les individus sont dans la même table, mais avec des types différents
+@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
+
 public class Individu implements Cloneable {
 
     @Id
@@ -13,7 +16,7 @@ public class Individu implements Cloneable {
     @Column(nullable = false)
     private Long id;
     @Column(nullable = false)
-    String civilite;
+    private String civilite;
     @Column
     private String nom;
     @Column
@@ -33,7 +36,11 @@ public class Individu implements Cloneable {
     @Column
     private String mdpOrigine;
     @Column
-    private String role = "NOT_USER";
+    private String role = "ADMIN";
+    @Column
+    private String codePostal;
+    @Column
+    private String ville;
 
     public Long getId() {
         return id;
@@ -131,6 +138,22 @@ public class Individu implements Cloneable {
         this.role = role;
     }
 
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -152,7 +175,7 @@ public class Individu implements Cloneable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNom(), getPrenom(),  getCodeSynchro(), getTelephoneMobile(), getTelephoneFixe(), getEmail(), getLogin(), getMdp(), getMdpOrigine(), getRole());
+        return Objects.hash(getId(), getNom(), getPrenom(), getCodeSynchro(), getTelephoneMobile(), getTelephoneFixe(), getEmail(), getLogin(), getMdp(), getMdpOrigine(), getRole());
     }
 
     @Override
@@ -172,4 +195,6 @@ public class Individu implements Cloneable {
                 ", role='" + role + '\'' +
                 '}';
     }
+
 }
+

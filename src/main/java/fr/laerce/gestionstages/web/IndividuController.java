@@ -38,7 +38,7 @@ public class IndividuController {
         model.addAttribute("individus", repoIndividu.findAll());
         return "listeIndividu";
     }
-
+    // TODO ajout prof eleve tuteur à faire
     @GetMapping("/individu/ajout")
     public String ajoutIndividuGet(Model model) {
         model.addAttribute("individu", new Individu());

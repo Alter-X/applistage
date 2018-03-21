@@ -26,7 +26,6 @@ public class Discipline {
         this.formateurs = formateurs;
     }
 
-
     public Long getId() {
         return id;
     }

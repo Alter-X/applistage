@@ -4,16 +4,20 @@ import fr.laerce.gestionstages.dao.IndividuRepository;
 import fr.laerce.gestionstages.domain.Individu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
 
-@Service
+@Service // LoginManager = nom pour le prof
 public class DroitsIndividu {
 
     @Autowired
     private IndividuRepository repoIndividu;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // méthode appelant toutes les autres de cette classe pour affecter des droits d'utilisation à un individu
     public void ajoutDroitsIndividu(Individu individu) {
@@ -86,7 +90,7 @@ public class DroitsIndividu {
     public String genererMdpCrypte(String string) {
         // on remplace tous les caractères alphanumériques par un encryptage via la méthode encode()
         // de l'objet BCryptPasswordEncoder, importé depuis une bibliothèque de Spring Security
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(11);
-        return encoder.encode(string);
+
+        return passwordEncoder.encode(string);
     }
 }

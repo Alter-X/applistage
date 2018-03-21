@@ -29,21 +29,21 @@ public class ImportFromSTS {
     @Autowired
     DisciplineRepository repoDiscipline;
     @Autowired
-    DivisionRepository repoDivision;
+    DivisionRepository   repoDivision;
     @Autowired
-    FormateurRepository repoFormateur;
+    FormateurRepository  repoFormateur;
     @Autowired
-    NiveauRepository repoNiveau;
+    NiveauRepository     repoNiveau;
 
-    private Map<String, Niveau> dicoNiveaux;
-    private Map<String, Division> dicoDivisions;
-    private Map<String, Formateur> dicoFormateurs;
+    private Map<String, Niveau>     dicoNiveaux;
+    private Map<String, Division>   dicoDivisions;
+    private Map<String, Formateur>  dicoFormateurs;
     private Map<String, Discipline> dicoDisciplines;
 
     public ImportFromSTS() {
-        dicoNiveaux = new HashMap<>();
-        dicoDivisions = new HashMap<>();
-        dicoFormateurs = new HashMap<>();
+        dicoNiveaux     = new HashMap<>();
+        dicoDivisions   = new HashMap<>();
+        dicoFormateurs  = new HashMap<>();
         dicoDisciplines = new HashMap<>();
     }
 
@@ -63,10 +63,10 @@ public class ImportFromSTS {
             document = documentBuilder.parse(new FileInputStream(fileName));
 
             // Initialisation des dictionnaires
-            this.dicoNiveaux = buildNiveaux();
-            this.dicoDivisions = buildDivision();
+            this.dicoNiveaux     = buildNiveaux();
+            this.dicoDivisions   = buildDivision();
             this.dicoDisciplines = buildDiscipline();
-            this.dicoFormateurs = buildFormateur();
+            this.dicoFormateurs  = buildFormateur();
 
         } catch (Exception e) {
             e.printStackTrace();
